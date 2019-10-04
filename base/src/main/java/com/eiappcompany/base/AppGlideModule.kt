@@ -1,13 +1,35 @@
 package com.eiappcompany.base
 
-@GlideModule(glideName = "MazeGlide")
+import android.content.Context
+import com.bumptech.glide.Glide
+import com.bumptech.glide.GlideBuilder
+import com.bumptech.glide.Registry
+import android.graphics.Bitmap.CompressFormat
+import com.bumptech.glide.annotation.Excludes
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.load.DecodeFormat.PREFER_ARGB_8888
+import com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule
+import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
+import com.bumptech.glide.load.engine.DiskCacheStrategy.RESOURCE
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
+import com.bumptech.glide.load.engine.cache.LruResourceCache
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.module.AppGlideModule
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
+import com.bumptech.glide.signature.ObjectKey
+import okhttp3.OkHttpClient
+import java.io.InputStream
+import java.util.concurrent.TimeUnit
+
+@GlideModule(glideName = "AppGlide")
 @Excludes(value = [OkHttpLibraryGlideModule::class])
-class MazeGlideModule : AppGlideModule() {
+class AppGlideModule : AppGlideModule() {
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         val client = OkHttpClient.Builder()
-            .readTimeout(DEFAULT_TIMEOUT, SECONDS)
-            .connectTimeout(DEFAULT_TIMEOUT, SECONDS)
+            .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             .build()
 
         val factory = OkHttpUrlLoader.Factory(client)
@@ -35,7 +57,7 @@ class MazeGlideModule : AppGlideModule() {
             dontAnimate()
             override(SIZE_ORIGINAL)
             encodeFormat(CompressFormat.PNG)
-            encodeQuality(DEFAUKT_ENCODE_QUALITY)
+            encodeQuality(DEFAULT_ENCODE_QUALITY)
             diskCacheStrategy(RESOURCE)
             format(PREFER_ARGB_8888)
             skipMemoryCache(true)
@@ -46,6 +68,6 @@ class MazeGlideModule : AppGlideModule() {
         private const val DEFAULT_TIMEOUT = 60L
         private const val DEFAULT_MEMORY_CACHE_SIZE = 1024 * 1024 * 300 // 300mb cache
         private const val DEFAULT_SIGNATURE_OBJECT = 168 * 60 * 60 * 1000
-        private const val DEFAUKT_ENCODE_QUALITY = 100
+        private const val DEFAULT_ENCODE_QUALITY = 100
     }
 }
