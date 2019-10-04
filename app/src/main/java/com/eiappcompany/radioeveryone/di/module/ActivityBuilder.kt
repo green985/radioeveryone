@@ -1,6 +1,6 @@
 package com.eiappcompany.radioeveryone.di.module
 
-import com.eiappcompany.radioeveryone.MainActivity
+import com.eiappcompany.radioeveryone.ui.main.MainActivity
 import com.eiappcompany.radioeveryone.di.scope.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

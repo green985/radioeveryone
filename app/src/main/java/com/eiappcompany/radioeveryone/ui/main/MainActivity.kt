@@ -1,12 +1,13 @@
-package com.eiappcompany.radioeveryone
+package com.eiappcompany.radioeveryone.ui.main
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import com.eiappcompany.base.BaseActivity
+import com.eiappcompany.radioeveryone.R
+import com.eiappcompany.radioeveryone.databinding.ActivityMainBinding
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
     @Inject
     lateinit var context: Context
@@ -15,9 +16,6 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(
-            "asdasd",
-            "asdad"
-        )
+        binding.denemeText.text = viewModel.k
     }
 }

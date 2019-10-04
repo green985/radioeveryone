@@ -1,10 +1,19 @@
 package com.eiappcompany.radioeveryone.di.module
 
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
 
 @Module
 class NetworkModule {
+
+    @Provides
+    @Singleton
+    internal fun provideDeneme(): String {
+        return "I Provide it"
+    }
+
 /*
     @Provides
     @Singleton
