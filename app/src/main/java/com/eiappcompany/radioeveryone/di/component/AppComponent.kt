@@ -4,6 +4,7 @@ import android.app.Application
 import com.eiappcompany.radioeveryone.RadioEveryoneApplication
 import com.eiappcompany.radioeveryone.di.module.ActivityBuilder
 import com.eiappcompany.radioeveryone.di.module.ContextModule
+import com.eiappcompany.radioeveryone.di.module.FragmentBuilder
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -27,6 +28,7 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         ActivityBuilder::class,
+        FragmentBuilder::class,
         ContextModule::class
     ]
 )
