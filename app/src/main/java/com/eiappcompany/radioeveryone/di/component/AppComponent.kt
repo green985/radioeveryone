@@ -2,6 +2,9 @@ package com.eiappcompany.radioeveryone.di.component
 
 import android.app.Application
 import com.eiappcompany.radioeveryone.RadioEveryoneApplication
+import com.eiappcompany.radioeveryone.di.builder.ActivityBuilder
+import com.eiappcompany.radioeveryone.di.builder.FragmentBuilder
+import com.eiappcompany.radioeveryone.di.builder.ViewModelBuilder
 import com.eiappcompany.radioeveryone.di.module.*
 import dagger.BindsInstance
 import dagger.Component
@@ -29,6 +32,7 @@ import javax.inject.Singleton
         ViewModelBuilder::class,
         FragmentBuilder::class,
         NetworkModule::class,
+        AppUtilModule::class,
         ContextModule::class
     ]
 )

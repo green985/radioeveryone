@@ -1,4 +1,4 @@
-package com.eiappcompany.radioeveryone.di.module
+package com.eiappcompany.radioeveryone.di.builder
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.eiappcompany.base.util.helper.SingleLiveEvent
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -13,41 +15,39 @@ Created by EiAppCompany
  **/
 
 abstract class BaseViewModel : AndroidViewModel(Application()) {
-/*
-    @Inject
-    lateinit var repository: VersionControlRepository
+    /*
+     val disposable = CompositeDisposable()
 
-    val disposable = CompositeDisposable()
-    val load = SingleLiveEvent<Boolean>()
-    val exception = SingleLiveEvent<ErrorActionModel>()
-    val errorMessageResponse = SingleLiveEvent<String>()
+     val load = SingleLiveEvent<Boolean>()
+     val exception = SingleLiveEvent<ErrorActionModel>()
+     val errorMessageResponse = SingleLiveEvent<String>()
 
-    val context: Context by lazy { getApplication<Application>().applicationContext }
+     val context: Context by lazy { getApplication<Application>().applicationContext }
 
 
-    override fun onCleared() {
-        disposable.clear()
-        super.onCleared()
-    }
+     override fun onCleared() {
+         disposable.clear()
+         super.onCleared()
+     }
 
-    fun <T> Observable<T>.magicSubscribe(
-        liveData: MutableLiveData<T>?,
-        getResponse: ((T) -> Unit)? = null
-    ) {
-        subscribe(
-            {
-                if (getResponse == null) {
-                    liveData!!.postValue(it)
-                } else {
-                    getResponse(it)
-                }
-            }, {
-                errorMessageResponse.postValue(it.message)
-            }
-        ).addTo(disposable)
-    }
+     fun <T> Observable<T>.magicSubscribe(
+         liveData: MutableLiveData<T>?,
+         getResponse: ((T) -> Unit)? = null
+     ) {
+         subscribe(
+             {
+                 if (getResponse == null) {
+                     liveData!!.postValue(it)
+                 } else {
+                     getResponse(it)
+                 }
+             }, {
+                 errorMessageResponse.postValue(it.message)
+             }
+         ).addTo(disposable)
+     }
 
- */
+  */
 
 }
 

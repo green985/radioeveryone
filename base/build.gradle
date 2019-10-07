@@ -25,6 +25,7 @@ android {
 
     buildTypes.forEach {
         it.buildConfigField("String", "baseUrl", baseUrl)
+        it.buildConfigField("String", "BASE_SHARED_PREF_KEY", BASE_SHARED_PREF_KEY)
     }
 
     // Open data binding
@@ -51,6 +52,8 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
     api "com.google.dagger:dagger-android-support:2.23.2"
+
+    api "com.squareup.retrofit2:converter-gson:2.6.0"
 
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-alpha05"
 

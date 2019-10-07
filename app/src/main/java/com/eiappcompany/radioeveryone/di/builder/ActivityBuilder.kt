@@ -1,4 +1,4 @@
-package com.eiappcompany.radioeveryone.di.module
+package com.eiappcompany.radioeveryone.di.builder
 
 import com.eiappcompany.radioeveryone.ui.main.MainActivity
 import com.eiappcompany.radioeveryone.di.scope.ActivityScope
