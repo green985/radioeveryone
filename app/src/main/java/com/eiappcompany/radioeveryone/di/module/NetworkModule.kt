@@ -1,9 +1,17 @@
 package com.eiappcompany.radioeveryone.di.module
 
+import com.eiappcompany.base.BuildConfig
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-
+import com.google.gson.FieldNamingPolicy.UPPER_CAMEL_CASE_WITH_SPACES
 
 @Module
 class NetworkModule {
@@ -14,7 +22,6 @@ class NetworkModule {
         return "I Provide it"
     }
 
-/*
     @Provides
     @Singleton
     internal fun provideGson(): Gson {
@@ -28,16 +35,16 @@ class NetworkModule {
     @Provides
     @Singleton
     internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().setLevel(Level.BODY)
+        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
     @Provides
     @Singleton
     internal fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder().apply {
-            connectTimeout(DEFAULT_TIMEOUT, SECONDS)
-            readTimeout(DEFAULT_TIMEOUT, SECONDS)
-            writeTimeout(DEFAULT_TIMEOUT, SECONDS)
+            connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+            writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
 
             interceptors().add(httpLoggingInterceptor)
         }.build()
@@ -57,5 +64,4 @@ class NetworkModule {
         private const val DEFAULT_TIMEOUT = 60L
     }
 
- */
 }

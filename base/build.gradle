@@ -23,6 +23,10 @@ android {
         }
     }
 
+    buildTypes.forEach {
+        it.buildConfigField("String", "baseUrl", baseUrl)
+    }
+
     // Open data binding
     dataBinding {
         enabled = true
