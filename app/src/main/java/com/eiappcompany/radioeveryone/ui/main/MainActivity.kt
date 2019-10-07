@@ -1,7 +1,7 @@
 package com.eiappcompany.radioeveryone.ui.main
 
-import android.content.Context
 import android.os.Bundle
+import com.eiappcompany.base.AppGlide
 import com.eiappcompany.base.BaseActivity
 import com.eiappcompany.base.util.helper.SharedHelper
 import com.eiappcompany.radioeveryone.R
@@ -21,6 +21,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
         binding.denemeText.text = viewModel.k
 
         helper.putStringData("deneme", "dana")
+
+
 
         Timber.d("helper == " + helper.getStringData("deneme", "veriyok"))
     }

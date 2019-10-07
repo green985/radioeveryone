@@ -9,7 +9,7 @@ import javax.inject.Inject
 class ImageBindingAdapter @Inject constructor() {
     @BindingAdapter(value = ["android:src"])
     fun ImageView.bindImage(url: String?) {
-        /*
+
         if (!url.isNullOrEmpty()) {
             AppGlide.with(context)
                 .asBitmap()
@@ -19,6 +19,5 @@ class ImageBindingAdapter @Inject constructor() {
         }
 
 
-         */
     }
 }
