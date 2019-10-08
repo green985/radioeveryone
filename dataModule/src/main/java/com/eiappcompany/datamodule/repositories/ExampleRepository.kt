@@ -3,7 +3,8 @@ package com.eiappcompany.datamodule.repositories
 import android.util.Log
 import androidx.annotation.NonNull
 import com.eiappcompany.base.util.helper.AppHelper
-import com.eiappcompany.datamodule.extensions.makeObservable
+import com.eiappcompany.base.util.helper.extensions.makeObservableWithStatus3
+import com.eiappcompany.base.util.viewState.ViewState
 import com.eiappcompany.datamodule.radioService.BaseRepository
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -21,10 +22,12 @@ constructor(
 ) : BaseRepository(appHelper) {
 
     fun login(
-    ): Observable<Any> {
-        return getApi().login()
-            .makeObservable(null)
-            .flatMap { interceptResponseExample(it) }
+    ): Observable<ViewState<LoginResponseObject>> {
+        return getApi().login(LoginRequest("deneme2@gmail.com", "Asd123"))
+            .makeObservableWithStatus3()
+            .flatMap {
+                interceptResponseExample2(it)
+            }
     }
 
     fun deneme() {

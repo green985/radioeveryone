@@ -33,7 +33,7 @@ class AppUtilModule {
     @Singleton
     internal fun provideGson(): Gson {
         return GsonBuilder().apply {
-            setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE_WITH_SPACES)
+            setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
             serializeNulls()
             setLenient()
         }.create()

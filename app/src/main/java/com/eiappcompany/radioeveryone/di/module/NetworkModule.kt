@@ -63,7 +63,7 @@ class NetworkModule {
     internal fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().apply {
             baseUrl(BuildConfig.baseUrl)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             addConverterFactory(GsonConverterFactory.create(gson))
             client(okHttpClient)
         }.build()

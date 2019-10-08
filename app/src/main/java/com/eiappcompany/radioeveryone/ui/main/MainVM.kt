@@ -1,7 +1,10 @@
 package com.eiappcompany.radioeveryone.ui.main
 
+import androidx.lifecycle.MutableLiveData
 import com.eiappcompany.base.BaseViewModel
+import com.eiappcompany.base.util.viewState.ViewState
 import com.eiappcompany.datamodule.repositories.ExampleRepository
+import com.eiappcompany.datamodule.repositories.LoginResponseObject
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -12,18 +15,24 @@ Created by EiAppCompany
  **/
 
 class MainVM @Inject constructor(
-    val provideDeneme: String,
     val repository: ExampleRepository
 ) : BaseViewModel() {
 
-    init {
-        Timber.d("==" + provideDeneme)
-        repository.login().subscribe {
-            Timber.d("subcribe ettim")
+    var loginResult = MutableLiveData<ViewState<LoginResponseObject>>()
 
-        }
-        repository.deneme()
+    init {
+        /*
+        repository.login().subscribe({
+            loginResult.value = it
+        }, {
+            loginResult.value = it.message?.let { it1 -> ViewState.error(it1) }
+        }).addTo(disposable)
+
+
+         */
+        repository.login().magicSubscribe(loginResult)
+
     }
 
-    var k = "kısdhıaubdhuıahnsd"
+
 }
