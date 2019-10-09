@@ -23,7 +23,7 @@ constructor(
 
     fun login(
     ): Observable<ViewState<LoginResponseObject>> {
-        return getApi().login(LoginRequest("deneme2@gmail.com", "Asd123"))
+        return getApi().login(LoginRequest("deneme2@gmail.com", "Asd1233"))
             .makeObservableWithStatus3()
             .flatMap {
                 interceptResponseExample2(it)

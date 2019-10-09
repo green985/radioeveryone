@@ -19,7 +19,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
         super.onCreate(savedInstanceState)
 
         viewModel.loginResult.observe(this, Observer {
-            observeViewState(it)
+            observeViewState(it) {
+                viewModel.doLogin()
+            }
 
         })
     }

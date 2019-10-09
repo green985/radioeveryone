@@ -1,4 +1,4 @@
-package com.eiappcompany.base
+package com.eiappcompany.base.dialogs
 
 import android.app.Dialog
 import android.content.Context
@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Window
-import android.view.WindowManager
+import com.eiappcompany.base.R
 import timber.log.Timber
 
 /**

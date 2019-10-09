@@ -5,7 +5,6 @@ import com.eiappcompany.base.BaseViewModel
 import com.eiappcompany.base.util.viewState.ViewState
 import com.eiappcompany.datamodule.repositories.ExampleRepository
 import com.eiappcompany.datamodule.repositories.LoginResponseObject
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -32,6 +31,10 @@ class MainVM @Inject constructor(
          */
         repository.login().magicSubscribe(loginResult)
 
+    }
+
+    fun doLogin() {
+        repository.login().magicSubscribe(loginResult)
     }
 
 

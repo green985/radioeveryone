@@ -5,12 +5,14 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.eiappcompany.base.dialogs.CustomDialog
+import com.eiappcompany.base.dialogs.ErrorDialogView
+import com.eiappcompany.base.errorModel.ErrorActionModel
 import com.eiappcompany.base.util.viewState.Status
 import com.eiappcompany.base.util.viewState.ViewState
 import dagger.android.support.DaggerAppCompatActivity
 import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 /**
@@ -33,6 +35,7 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : DaggerAp
     private val loadingDialog: CustomDialog by lazy {
         CustomDialog(this)
     }
+    private lateinit var errorDialog: ErrorDialogView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,7 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : DaggerAp
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<VM>
     }
 
-    fun <T> observeViewState(viewState: ViewState<T>) {
+    fun <T> observeViewState(viewState: ViewState<T>, errorAction: (() -> Unit)? = null) {
         if (viewState.status == Status.LOADING) {
             setLoadingVisibility(true)
         } else {
@@ -54,6 +57,7 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : DaggerAp
 
         if (viewState.status == Status.ERROR) {
             //TODO Error dialog show
+            exceptionHandler(ErrorActionModel(Throwable(viewState.message), errorAction))
         }
     }
 
@@ -67,6 +71,17 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : DaggerAp
                 loadingDialog.dismiss()
             }
         }
+    }
+
+    fun exceptionHandler(errorModel: ErrorActionModel) {
+        errorDialog = ErrorDialogView(this)
+        errorDialog.dialogTitleStr = "Bir hata oluştu."
+        errorDialog.dialogDesc = errorModel.throwable.message.toString()
+        errorModel.action.let {
+            errorDialog.action = it
+            errorDialog.dismiss()
+        }
+        errorDialog.showDialog()
     }
 
 
