@@ -37,6 +37,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/base/assets/'] } }
 }
 
 dependencies {
@@ -49,13 +50,16 @@ dependencies {
     api("com.github.bumptech.glide:okhttp3-integration:4.9.0") {
         exclude group: 'glide-parent'
     }
-    kapt  "com.github.bumptech.glide:compiler:4.9.0"
+    kapt "com.github.bumptech.glide:compiler:4.9.0"
 
     implementation 'androidx.annotation:annotation:1.1.0'
 
     api "com.google.dagger:dagger-android-support:2.23.2"
 
     api "com.squareup.retrofit2:converter-gson:2.6.0"
+
+
+    api 'com.airbnb.android:lottie:3.0.7'
 
 
     api "io.reactivex.rxjava2:rxjava:2.2.10"
