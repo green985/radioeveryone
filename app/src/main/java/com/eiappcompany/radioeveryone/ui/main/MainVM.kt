@@ -1,5 +1,7 @@
 package com.eiappcompany.radioeveryone.ui.main
 
+import android.util.Log
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.eiappcompany.base.BaseViewModel
 import com.eiappcompany.base.util.viewState.ViewState
@@ -20,15 +22,6 @@ class MainVM @Inject constructor(
     var loginResult = MutableLiveData<ViewState<LoginResponseObject>>()
 
     init {
-        /*
-        repository.login().subscribe({
-            loginResult.value = it
-        }, {
-            loginResult.value = it.message?.let { it1 -> ViewState.error(it1) }
-        }).addTo(disposable)
-
-
-         */
         repository.login().magicSubscribe(loginResult)
 
     }

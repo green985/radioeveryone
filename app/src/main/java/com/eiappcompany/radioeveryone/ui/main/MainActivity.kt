@@ -1,6 +1,7 @@
 package com.eiappcompany.radioeveryone.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.eiappcompany.base.BaseActivity
 import com.eiappcompany.base.util.helper.SharedHelper
