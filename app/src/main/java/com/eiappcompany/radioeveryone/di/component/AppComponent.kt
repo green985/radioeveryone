@@ -1,11 +1,14 @@
 package com.eiappcompany.radioeveryone.di.component
 
 import android.app.Application
+import com.eiappcompany.base.baseDi.AppUtilModule
+import com.eiappcompany.datamodule.dataModuleDi.NetworkModule
+import com.eiappcompany.exoplayermodule.exoPlayerDi.ExoPlayerModule
 import com.eiappcompany.radioeveryone.RadioEveryoneApplication
 import com.eiappcompany.radioeveryone.di.builder.ActivityBuilder
 import com.eiappcompany.radioeveryone.di.builder.FragmentBuilder
 import com.eiappcompany.radioeveryone.di.builder.ViewModelBuilder
-import com.eiappcompany.radioeveryone.di.module.*
+import com.eiappcompany.radioeveryone.di.module.ContextModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -33,6 +36,7 @@ import javax.inject.Singleton
         FragmentBuilder::class,
         NetworkModule::class,
         AppUtilModule::class,
+        ExoPlayerModule::class,
         ContextModule::class
     ]
 )

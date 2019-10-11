@@ -1,2 +1,2 @@
-include ':app', ':base', ':dataModule'
+include ':app', ':base', ':dataModule', ':exoPlayerModule'
 rootProject.name='RadioEveryone'

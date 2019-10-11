@@ -33,7 +33,7 @@ constructor(
         val newRequest = chain.request().newBuilder()
             //.addHeader("Authorization", "Bearer $token")
             .addHeader("Authorization", "Bearer")
-            .method(chain.request().method(), chain.request().body())
+            .method(chain.request().method, chain.request().body)
             .build()
         return chain.proceed(newRequest)
     }

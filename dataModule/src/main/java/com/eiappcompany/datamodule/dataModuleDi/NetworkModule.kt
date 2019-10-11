@@ -1,6 +1,7 @@
-package com.eiappcompany.radioeveryone.di.module
+package com.eiappcompany.datamodule.dataModuleDi
 
 import com.eiappcompany.base.BuildConfig
+import com.eiappcompany.base.baseDi.AppUtilModule
 import com.eiappcompany.base.util.helper.SharedHelper
 import com.eiappcompany.datamodule.radioService.RadioServiceAPI
 import com.eiappcompany.datamodule.util.AuthInterceptor

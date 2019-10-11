@@ -41,8 +41,15 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel> : DaggerAp
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         viewModel = viewModelFactory.create(getTClass())
-        loadingDialog.show()
+        prepareObserver()
+        prepareView()
+        prepareSomethingLateImplement()
+
     }
+
+    abstract fun prepareView()
+    abstract fun prepareObserver()
+    abstract fun prepareSomethingLateImplement()
 
     private fun getTClass(): Class<VM> {
         return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<VM>

@@ -17,18 +17,12 @@ class CrowlerRadioModel {
             radioKey = strTmp.last()
             field = value
         }
-
     var radioImageUrl = ""
-
     var radioKey: String = ""
-
     var radioName: String = ""
-
     var radioListenNumber: String = ""
-
     var radioLanguage: String = ""
     var radioLanguageCode: String = ""
-
     var radioCategoryList: ArrayList<String> = ArrayList()
 
     fun detectCategory(category: String) {
@@ -64,5 +58,20 @@ class CrowlerRadioModel {
         radioLanguageCode = uri.query.split("&")[0].split("=")[1]
     }
 
+
+    fun isValidData(): Boolean {
+        if (radioCategoryList.size == 0)
+            return false
+        if (radioImageUrl == "") return false
+        if (radioKey == "") return false
+        if (radioLanguage == "") return false
+        if (radioLanguageCode == "") return false
+        if (radioListenNumber == "") return false
+        if (radioName == "") return false
+        if (radioUrl == "") return false
+
+        return true
+
+    }
 
 }

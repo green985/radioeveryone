@@ -1,11 +1,13 @@
 package com.eiappcompany.base.crowler
 
 import com.eiappcompany.base.crowler.crowlerModel.CrowlerRadioModel
+import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import java.io.File
 
 
 /**
@@ -44,7 +46,7 @@ fun getRadioFromUrl(url: String) {
     }
 
     val link = doc.getElementsByClass("col s12 m6 l4 margin-all")
-    println("url = " + link.size)
+//    println("url = " + link.size)
 
 
     makeAsyncTaskForKotlin({
@@ -61,10 +63,15 @@ fun getRadioFromUrl(url: String) {
                 radioModel.radioListenNumber = it.getElementsByClass("play-ico").text()
                 radioModel.detectCategory(it.select("p").first().text())
 
-                //File("deneme").appendText("," + Gson().toJson(radioModel))
-                radioModelList.add(radioModel)
+                if (radioModel.isValidData()) {
+                    File("deneme").appendText("," + Gson().toJson(radioModel))
+                } else {
+                    println("Some value doesn't fill" + Gson().toJson(radioModel))
+
+                }
+                //radioModelList.add(radioModel)
                 //println(Gson().toJson(radioModel))
-                radioSize++
+//                radioSize++
 
             } catch (e: Exception) {
                 println(e.message)
@@ -76,8 +83,10 @@ fun getRadioFromUrl(url: String) {
     }, {
         //File("deneme").appendText(Gson().toJson(radioModelList))
         println("Sucsessss == " + it.size)
+        radioSize += it.size
+        println("Sucsessss == " + radioSize)
     })
-    println(radioSize)
+    //println(radioSize)
     //println(Gson().toJson(radioModelList))
 }
 

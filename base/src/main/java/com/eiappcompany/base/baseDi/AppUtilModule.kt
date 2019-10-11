@@ -1,4 +1,4 @@
-package com.eiappcompany.radioeveryone.di.module
+package com.eiappcompany.base.baseDi
 
 import android.content.Context
 import android.content.SharedPreferences

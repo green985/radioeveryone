@@ -28,21 +28,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":base")
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-//    api "com.google.dagger:dagger-android-support:2.23.2"
+    api "com.google.android.exoplayer:exoplayer:2.9.3"
     kapt "com.google.dagger:dagger-compiler:2.23.2"
-
-//    api "com.squareup.retrofit2:retrofit:2.6.2"
-//    api "com.squareup.retrofit2:converter-gson:2.6.0"
-
-    // Service Manager
-    api "com.squareup.retrofit2:retrofit:2.6.2"
-//    implementation "com.squareup.retrofit2:converter-gson:2.6.0"
-    api "com.squareup.retrofit2:adapter-rxjava2:2.6.0"
-    api "com.squareup.okhttp3:okhttp:4.0.1"
-    api "com.squareup.okhttp3:logging-interceptor:4.0.1"
-
-
+    
 }

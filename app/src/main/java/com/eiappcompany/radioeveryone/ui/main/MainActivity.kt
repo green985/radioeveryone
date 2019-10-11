@@ -1,7 +1,5 @@
 package com.eiappcompany.radioeveryone.ui.main
 
-import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.eiappcompany.base.BaseActivity
 import com.eiappcompany.base.util.helper.SharedHelper
@@ -11,20 +9,34 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
+
     @Inject
     lateinit var helper: SharedHelper
 
     override val layoutId = R.layout.activity_main
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
+    override fun prepareView() {
+        binding.denemeText.setOnClickListener {
+            viewModel.startRadio()
+        }
+    }
+
+    override fun prepareObserver() {
         viewModel.loginResult.observe(this, Observer {
             observeViewState(it) {
                 viewModel.doLogin()
             }
 
         })
+
+        viewModel.radioExo.radioViewState.observe(this, Observer {
+            observeViewState(it)
+        })
+    }
+
+    override fun prepareSomethingLateImplement() {
+
     }
 
 
