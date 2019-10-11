@@ -36,7 +36,7 @@ class MainVM @Inject constructor(
 
     fun startRadio() {
         var radioDataModel = RadioDataModel()
-        radioDataModel.radioStreamUrl = "http://streaming.radio.co/s0ce169aac/listen"
+        radioDataModel.radioStreamUrl = "http://yayin.radyohayalfm.net:8050"
         radioExo.initRadioDataModel(radioDataModel)
     }
 
