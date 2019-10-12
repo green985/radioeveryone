@@ -20,6 +20,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
         binding.denemeText.setOnClickListener {
             viewModel.startRadio()
         }
+
+        binding.stopTextView.setOnClickListener {
+            viewModel.stopRadio()
+        }
+
+        binding.destroyRadio.setOnClickListener {
+            viewModel.destroyRadio()
+        }
     }
 
     override fun prepareObserver() {

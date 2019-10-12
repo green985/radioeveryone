@@ -26,7 +26,7 @@ class MainVM @Inject constructor(
 
 
     init {
-        repository.login().magicSubscribe(loginResult)
+        //repository.login().magicSubscribe(loginResult)
 
     }
 
@@ -38,6 +38,16 @@ class MainVM @Inject constructor(
         var radioDataModel = RadioDataModel()
         radioDataModel.radioStreamUrl = "http://yayin.radyohayalfm.net:8050"
         radioExo.initRadioDataModel(radioDataModel)
+    }
+
+    fun stopRadio() {
+        radioExo.stopRadio()
+
+    }
+
+    fun destroyRadio() {
+        radioExo.destroyRadio()
+
     }
 
 

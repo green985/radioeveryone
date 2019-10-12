@@ -6,8 +6,10 @@ Created by EiAppCompany
 15:27
  **/
 
-class RadioDataModel() {
+class RadioDataModel {
 
     var radioStreamUrl: String = ""
+    var radioName: String = ""
+    var radioPlayingSongName: String = ""
 
 }

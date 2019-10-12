@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.eiappcompany.base.util.viewState.ViewState
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioDataModel
+import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioViewState
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -75,6 +76,22 @@ class RadioClass @Inject constructor(
         simpleExoPlayer.playWhenReady = true
     }
 
+    fun stopRadio() {
+        if (simpleExoPlayer.playWhenReady) {
+            //simpleExoPlayer.playWhenReady = false
+            simpleExoPlayer.stop()
+            radioViewState.value = RadioViewState.stop(radioDataModel)
+        }
+    }
+
+    //Only call notification destroy button
+    fun destroyRadio() {
+        simpleExoPlayer.apply {
+            stop()
+            release()
+        }
+    }
+
     override fun onVolumeChanged(eventTime: AnalyticsListener.EventTime?, volume: Float) {
         Timber.d("VolumeChanged == $volume")
     }
@@ -82,14 +99,23 @@ class RadioClass @Inject constructor(
     //Player Event Listeners
     override fun onPlayerStateChanged(isLoading: Boolean, playbackState: Int) {
         Log.d("onPlayerError", "onPlayerStateChanged=$playbackState")
+        Log.d("onPlayerError", "onPlayerStateChanged=$isLoading")
         when (playbackState) {
+            Player.STATE_IDLE -> {
+                radioViewState.value = RadioViewState.stop(radioDataModel)
+            }
             Player.STATE_BUFFERING -> {
+                radioViewState.value = RadioViewState.loading(radioDataModel)
             }
             Player.STATE_ENDED -> {
-            }
-            Player.STATE_IDLE -> {
+                //Player destroy
+                radioViewState.value = RadioViewState.stop(radioDataModel)
             }
             Player.STATE_READY -> {
+                // radio start in here
+                if (simpleExoPlayer.playWhenReady) {
+                    radioViewState.value = RadioViewState.playing(radioDataModel)
+                }
             }
         }
     }
@@ -139,13 +165,6 @@ class RadioClass @Inject constructor(
         } else {
             //TODO error fetch will be init.
             Timber.d("RadioError%s", error.message)
-        }
-    }
-
-    override fun onLoadingChanged(isLoading: Boolean) {
-        Timber.d("onLoadingChanged $isLoading")
-        if (isLoading) {
-            radioViewState.value = ViewState.loading(radioDataModel)
         }
     }
 

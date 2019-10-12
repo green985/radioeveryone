@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Projects-RadioEveryone.iml" filepath="$PROJECT_DIR$/Projects-RadioEveryone.iml" />
       <module fileurl="file://$PROJECT_DIR$/RadioEveryone.iml" filepath="$PROJECT_DIR$/RadioEveryone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/RadioEveryone-app.iml" filepath="$PROJECT_DIR$/app/RadioEveryone-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/RadioEveryone-base.iml" filepath="$PROJECT_DIR$/base/RadioEveryone-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dataModule/RadioEveryone-dataModule.iml" filepath="$PROJECT_DIR$/dataModule/RadioEveryone-dataModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exoPlayerModule/RadioEveryone-exoPlayerModule.iml" filepath="$PROJECT_DIR$/exoPlayerModule/RadioEveryone-exoPlayerModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/dataModule/dataModule.iml" filepath="$PROJECT_DIR$/dataModule/dataModule.iml" />
