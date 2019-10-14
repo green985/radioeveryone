@@ -40,6 +40,12 @@ class MainVM @Inject constructor(
         radioExo.initRadioDataModel(radioDataModel)
     }
 
+    fun startdifferentRadioRadio() {
+        var radioDataModel = RadioDataModel()
+        radioDataModel.radioStreamUrl = "http://streaming.radio.co/s0ce169aac/listen"
+        radioExo.initRadioDataModel(radioDataModel)
+    }
+
     fun stopRadio() {
         radioExo.stopRadio()
 

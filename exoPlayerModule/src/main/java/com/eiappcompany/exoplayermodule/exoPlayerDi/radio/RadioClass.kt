@@ -3,7 +3,6 @@ package com.eiappcompany.exoplayermodule.exoPlayerDi.radio
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.eiappcompany.base.util.viewState.ViewState
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioDataModel
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioViewState
 import com.google.android.exoplayer2.ExoPlaybackException
@@ -29,7 +28,7 @@ class RadioClass @Inject constructor(
 ) : Player.EventListener, AnalyticsListener {
 
 
-    var radioViewState = MutableLiveData<ViewState<RadioDataModel>>()
+    var radioViewState = MutableLiveData<RadioViewState<RadioDataModel>>()
     var radioDataModel = RadioDataModel()
 
     init {
@@ -39,8 +38,7 @@ class RadioClass @Inject constructor(
 
 
     fun initRadioDataModel(radioDataModel: RadioDataModel) {
-        this.radioDataModel = radioDataModel
-        if (radioDataModel.radioStreamUrl == radioDataModel.radioStreamUrl) {
+        if (this.radioDataModel.radioStreamUrl == radioDataModel.radioStreamUrl) {
             //Fetch same radio, if radio stop start it or do nothing
             if (simpleExoPlayer.playbackState == Player.STATE_READY) {
                 if (simpleExoPlayer.playWhenReady) {
@@ -53,7 +51,11 @@ class RadioClass @Inject constructor(
             } else {
                 startRadio(radioDataModel.radioStreamUrl)
             }
+        } else {
+            startRadio(radioDataModel.radioStreamUrl)
         }
+        this.radioDataModel = radioDataModel
+
     }
 
     /**
@@ -115,6 +117,8 @@ class RadioClass @Inject constructor(
                 // radio start in here
                 if (simpleExoPlayer.playWhenReady) {
                     radioViewState.value = RadioViewState.playing(radioDataModel)
+                } else {
+                    radioViewState.value = RadioViewState.stop(radioDataModel)
                 }
             }
         }
