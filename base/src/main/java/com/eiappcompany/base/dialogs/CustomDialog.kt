@@ -15,7 +15,7 @@ import timber.log.Timber
 class CustomDialog(context: Context) : Dialog(context) {
 
     init {
-        Timber.d("CustomDialog call")
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

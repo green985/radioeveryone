@@ -9,6 +9,8 @@ import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.analytics.AnalyticsListener
+import com.google.android.exoplayer2.metadata.Metadata
+import com.google.android.exoplayer2.metadata.MetadataOutput
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
@@ -25,7 +27,7 @@ class RadioClass @Inject constructor(
     var simpleExoPlayer: SimpleExoPlayer,
     var hlsMediaSource: HlsMediaSource.Factory,
     var extractorSource: ExtractorMediaSource.Factory
-) : Player.EventListener, AnalyticsListener {
+) : Player.EventListener, AnalyticsListener, MetadataOutput {
 
 
     var radioViewState = MutableLiveData<RadioViewState<RadioDataModel>>()
@@ -34,6 +36,7 @@ class RadioClass @Inject constructor(
     init {
         simpleExoPlayer.addListener(this)
         simpleExoPlayer.addAnalyticsListener(this)
+        simpleExoPlayer.addMetadataOutput(this)
     }
 
 
@@ -123,6 +126,12 @@ class RadioClass @Inject constructor(
             }
         }
     }
+
+    override fun onMetadata(metadata: Metadata?) {
+        //TODO metaData doesnt trigger
+        Timber.d("meta==" + metadata)
+    }
+
 
     override fun onPlayerError(error: ExoPlaybackException) {
         //is Error cause for mediaSource
