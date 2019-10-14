@@ -22,6 +22,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
 
     override fun prepareView() {
+        binding.radioView.lifecycleOwner = this
+        binding.radioView.radioPlayer = viewModel.radioExo
+
         binding.denemeText.setOnClickListener {
             viewModel.startRadio()
         }
