@@ -15,6 +15,7 @@ import com.eiappcompany.radioeveryone.R
 import com.eiappcompany.radioeveryone.databinding.ActivityMainBinding
 import com.eiappcompany.radioeveryone.ui.radioListAdapter.RadioListAdapter
 import timber.log.Timber
+import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
@@ -76,7 +77,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
             Timber.d("null=")
             return
         }
+
         radioListAdapter = RadioListAdapter(it.data!!)
+        binding.root.removeView(binding.radioView)
+        radioListAdapter.addView = WeakReference(binding.radioView)
+
+
         binding.recyclerViewRadioList.apply {
             adapter = radioListAdapter
             setHasFixedSize(true)

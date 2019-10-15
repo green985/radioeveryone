@@ -1,12 +1,14 @@
 package com.eiappcompany.radioeveryone.ui.radioListAdapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eiappcompany.base.BaseHolder
 import com.eiappcompany.base.crowler.crowlerModel.RadioDataModelCrowler
 import com.eiappcompany.radioeveryone.BR
 import com.eiappcompany.radioeveryone.databinding.RadioChannelItemLayoutBinding
+import java.lang.ref.WeakReference
 
 /**
 Created by EiAppCompany
@@ -18,6 +20,11 @@ Created by EiAppCompany
 class RadioListAdapter(
         var radioList: List<RadioDataModelCrowler>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    lateinit var addView: WeakReference<View>
+
+
+    lateinit var radioView: View
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -55,8 +62,43 @@ class RadioListAdapter(
         }
 
         override fun bind() {
-
+            if (adapterPosition == 0) {
+                getRowBinding()?.let {
+                    it.addRoot.visibility = View.VISIBLE
+                    if (addView.get() != null) {
+                        it.addRoot.removeAllViews()
+                        it.addRoot.addView(addView.get())
+                    }
+                }
+            } else {
+                getRowBinding()?.let {
+                    it.addRoot.visibility = View.GONE
+                }
+            }
         }
     }
-
 }
+
+/*
+try {
+                if (advertisementModel.getListItem().getAdsenseCode() == null) {
+                    if (adView == null) {
+                        adView = new AdView(itemView.getContext());
+                        adView.setAdUnitId(advertisementModel.getListItem().getAdsenseCode());
+                        adView.setAdSize(AdSize.SMART_BANNER);
+                        AdRequest adRequest = new AdRequest.Builder().build();
+                        adView.loadAd(adRequest);
+                        adView.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+                                // Code to be executed when an ad finishes loading.
+                                bannerLoad = true;
+                            }
+
+                        });
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+ */
