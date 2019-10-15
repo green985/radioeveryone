@@ -35,7 +35,7 @@ class RadioPlayerView @JvmOverloads constructor(
 
 
     var lifecycleOwner: LifecycleOwner? = null
-//    var radioDataModel = MutableLiveData<RadioViewState<RadioDataModel>>()
+//    var radioDataModel = MutableLiveData<RadioViewState<RadioDataModelCrowler>>()
 
 
     init {

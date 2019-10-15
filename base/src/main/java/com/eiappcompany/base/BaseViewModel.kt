@@ -1,6 +1,7 @@
 package com.eiappcompany.base
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.eiappcompany.base.util.helper.SingleLiveEvent
@@ -22,10 +23,11 @@ abstract class BaseViewModel : AndroidViewModel(Application()) {
         val load = SingleLiveEvent<Boolean>()
         val exception = SingleLiveEvent<ErrorActionModel>()
 
-        val context: Context by lazy { getApplication<Application>().applicationContext }
 
 
      */
+    val context: Context by lazy { getApplication<Application>().applicationContext }
+
     val errorMessageResponse = SingleLiveEvent<String>()
 
 

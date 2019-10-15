@@ -2,6 +2,8 @@ package com.eiappcompany.radioeveryone.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import com.eiappcompany.base.BaseViewModel
+import com.eiappcompany.base.crowler.crowlerModel.RadioDataModelCrowler
+import com.eiappcompany.base.util.ext.HelperExt
 import com.eiappcompany.base.util.viewState.ViewState
 import com.eiappcompany.datamodule.repositories.ExampleRepository
 import com.eiappcompany.datamodule.repositories.LoginResponseObject
@@ -20,15 +22,28 @@ class MainVM @Inject constructor(
 ) : BaseViewModel() {
 
     var loginResult = MutableLiveData<ViewState<LoginResponseObject>>()
+    var radioListLiveData = MutableLiveData<ViewState<List<RadioDataModelCrowler>>>()
 
     @Inject
     lateinit var radioExo: RadioClass
 
 
     init {
-        //repository.login().magicSubscribe(loginResult)
-
+        getRadioList()
     }
+
+
+    fun getRadioList() {
+        val radioString =
+                repository.appHelper.getContext().assets.open("radioList.json").bufferedReader()
+                        .use { it.readText() }
+
+        if (radioString != "") {
+            radioListLiveData.value =
+                    ViewState.success(HelperExt.makeListFromJsonString(radioString))
+        }
+    }
+
 
     fun doLogin() {
         repository.login().magicSubscribe(loginResult)
@@ -53,7 +68,6 @@ class MainVM @Inject constructor(
 
     fun destroyRadio() {
         radioExo.destroyRadio()
-
     }
 
 

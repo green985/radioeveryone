@@ -16,6 +16,10 @@ class AppHelper constructor(
         return context.getString(resId)
     }
 
+    fun getContext(): Context {
+        return context
+    }
+
     fun getStringWithFormat(@StringRes resId: Int, vararg formatArgs: Any): String {
         return context.getString(resId, *formatArgs)
     }

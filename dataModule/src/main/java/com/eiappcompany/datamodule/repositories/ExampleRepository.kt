@@ -18,7 +18,7 @@ Created by EiAppCompany
 
 class ExampleRepository @Inject
 constructor(
-    @NonNull appHelper: AppHelper
+        @NonNull var appHelper: AppHelper
 ) : BaseRepository(appHelper) {
 
     fun login(

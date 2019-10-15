@@ -1,15 +1,20 @@
 package com.eiappcompany.radioeveryone.ui.main
 
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.eiappcompany.base.BaseActivity
+import com.eiappcompany.base.crowler.crowlerModel.RadioDataModelCrowler
 import com.eiappcompany.base.errorModel.ErrorActionModel
 import com.eiappcompany.base.util.helper.SharedHelper
 import com.eiappcompany.base.util.viewState.Status
+import com.eiappcompany.base.util.viewState.ViewState
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioDataModel
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioStatus
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioViewState
 import com.eiappcompany.radioeveryone.R
 import com.eiappcompany.radioeveryone.databinding.ActivityMainBinding
+import com.eiappcompany.radioeveryone.ui.radioListAdapter.RadioListAdapter
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
@@ -17,6 +22,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
     @Inject
     lateinit var helper: SharedHelper
+
+    lateinit var radioListAdapter: RadioListAdapter
 
     override val layoutId = R.layout.activity_main
 
@@ -52,16 +59,36 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
         viewModel.radioExo.radioViewState.observe(this, Observer {
             observeRadioState(it)
         })
+
+        viewModel.radioListLiveData.observe(this, Observer {
+            prepareRecyclerViewForRadioList(it)
+        })
+
+
     }
 
     override fun prepareSomethingLateImplement() {
+    }
+
+    fun prepareRecyclerViewForRadioList(it: ViewState<List<RadioDataModelCrowler>>) {
+        if (it.data == null) {
+            //TODO Null check data
+            Timber.d("null=")
+            return
+        }
+        radioListAdapter = RadioListAdapter(it.data!!)
+        binding.recyclerViewRadioList.apply {
+            adapter = radioListAdapter
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+        }
+
 
     }
 
-
     fun observeRadioState(
-        viewState: RadioViewState<RadioDataModel>,
-        errorAction: (() -> Unit)? = null
+            viewState: RadioViewState<RadioDataModel>,
+            errorAction: (() -> Unit)? = null
     ) {
         if (viewState.status == RadioStatus.LOADING) {
             //setLoadingVisibility(true)
