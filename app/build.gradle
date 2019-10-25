@@ -25,7 +25,7 @@ android {
         }
     }
 
-    // Open data binding
+    // Open radioData binding
     dataBinding {
         enabled = true
     }

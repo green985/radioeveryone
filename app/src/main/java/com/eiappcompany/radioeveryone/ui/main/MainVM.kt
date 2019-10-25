@@ -4,11 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import com.eiappcompany.base.BaseViewModel
 import com.eiappcompany.base.crowler.crowlerModel.RadioDataModelCrowler
 import com.eiappcompany.base.util.ext.HelperExt
+import com.eiappcompany.base.util.helper.extensions.addTo
 import com.eiappcompany.base.util.viewState.ViewState
-import com.eiappcompany.datamodule.repositories.ExampleRepository
 import com.eiappcompany.datamodule.repositories.LoginResponseObject
+import com.eiappcompany.datamodule.repositories.RadioDataRepository
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radio.RadioClass
 import com.eiappcompany.exoplayermodule.exoPlayerDi.radioModel.RadioDataModel
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -18,7 +20,7 @@ Created by EiAppCompany
  **/
 
 class MainVM @Inject constructor(
-    val repository: ExampleRepository
+    val repository: RadioDataRepository
 ) : BaseViewModel() {
 
     var loginResult = MutableLiveData<ViewState<LoginResponseObject>>()
@@ -35,24 +37,35 @@ class MainVM @Inject constructor(
 
     fun getRadioList() {
         val radioString =
-                repository.appHelper.getContext().assets.open("radioList.json").bufferedReader()
-                        .use { it.readText() }
+            repository.appHelper.getContext().assets.open("radioList.json").bufferedReader()
+                .use { it.readText() }
 
         if (radioString != "") {
             radioListLiveData.value =
-                    ViewState.success(HelperExt.makeListFromJsonString(radioString))
+                ViewState.success(HelperExt.makeListFromJsonString(radioString))
         }
     }
 
 
-    fun doLogin() {
-        repository.login().magicSubscribe(loginResult)
-    }
+    fun startRadio(radioData: RadioDataModelCrowler) {
+        repository.getRadioStreamData(radioData.radioKey).subscribe({
+            if (it.data != null) {
+                var tmpDataModel = RadioDataModel()
+                if (it.data!!.radioGenericModel.streamModel.isEmpty()) {
+                    //TODO
+                    Timber.d("doError")
+                }
+                tmpDataModel.radioStreamUrl = it.data!!.radioGenericModel.streamModel[0].streamLink
+                tmpDataModel.radioName = radioData.radioName
+                radioExo.initRadioDataModel(tmpDataModel)
 
-    fun startRadio() {
-        var radioDataModel = RadioDataModel()
-        radioDataModel.radioStreamUrl = "http://17773.live.streamtheworld.com/JOY_TURK2AAC_SC"
-        radioExo.initRadioDataModel(radioDataModel)
+            } else {
+                Timber.d("doError2")
+            }
+        }, {
+            Timber.d("doError%s", it.message)
+
+        }).addTo(disposable)
     }
 
     fun startdifferentRadioRadio() {

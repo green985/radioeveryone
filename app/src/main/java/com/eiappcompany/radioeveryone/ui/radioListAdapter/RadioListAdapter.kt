@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eiappcompany.base.BaseHolder
 import com.eiappcompany.base.crowler.crowlerModel.RadioDataModelCrowler
+import com.eiappcompany.base.util.interfaces.RecyclerViewItemClickListener
 import com.eiappcompany.radioeveryone.BR
 import com.eiappcompany.radioeveryone.databinding.RadioChannelItemLayoutBinding
 import java.lang.ref.WeakReference
@@ -18,23 +19,21 @@ Created by EiAppCompany
 
 
 class RadioListAdapter(
-        var radioList: List<RadioDataModelCrowler>
+    var radioList: List<RadioDataModelCrowler>,
+    var listItemClick: RecyclerViewItemClickListener<RadioDataModelCrowler>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var addView: WeakReference<View>
 
-
-    lateinit var radioView: View
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == 0) {
-            //Radio LAyout create
-            return RadioChannelItemHolder(RadioChannelItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-        } else {
-            //TODO Should be a add layout or something else
-            return RadioChannelItemHolder(RadioChannelItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-        }
+        //Radio LAyout create
+        return RadioChannelItemHolder(
+            RadioChannelItemLayoutBinding.inflate(
+                LayoutInflater.from(
+                    parent.context
+                ), parent, false
+            )
+        )
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -55,13 +54,23 @@ class RadioListAdapter(
 
 
     inner class RadioChannelItemHolder constructor(viewDataBinding: RadioChannelItemLayoutBinding) :
-            BaseHolder<RadioDataModelCrowler, RadioChannelItemLayoutBinding>(viewDataBinding) {
+        BaseHolder<RadioDataModelCrowler, RadioChannelItemLayoutBinding>(viewDataBinding) {
 
         override fun bindingVariable(): Int {
             return BR.item
         }
 
         override fun bind() {
+            getRowBinding()?.getRoot()?.setOnClickListener {
+                getRowItem()?.let { rowItem ->
+                    listItemClick.listItemClick(
+                        rowItem,
+                        it,
+                        adapterPosition
+                    )
+                }
+            }
+            /*
             if (adapterPosition == 0) {
                 getRowBinding()?.let {
                     it.addRoot.visibility = View.VISIBLE
@@ -75,6 +84,8 @@ class RadioListAdapter(
                     it.addRoot.visibility = View.GONE
                 }
             }
+
+             */
         }
     }
 }
