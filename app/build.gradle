@@ -52,6 +52,9 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0-alpha04'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
 
+    //Spanny
+    implementation 'com.binaryfork:spanny:1.0.4'
+
 
     // Rx
     implementation "io.reactivex.rxjava2:rxjava:2.2.10"

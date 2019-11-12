@@ -44,7 +44,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(),
         }
         binding.differentRadio.setOnClickListener {
             viewModel.startdifferentRadioRadio()
+            setTextToEksiView()
         }
+
+        setTextToEksiView()
+    }
+
+     fun setTextToEksiView(){
+        binding.eksiTextViewExample.setHardcodedString(getString(R.string.denemeText))
     }
 
     override fun prepareObserver() {

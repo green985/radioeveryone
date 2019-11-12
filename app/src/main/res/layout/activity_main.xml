@@ -62,10 +62,21 @@
             android:id="@+id/recyclerViewRadioList"
             android:layout_width="0dp"
             android:layout_height="500dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/radioView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <com.eiappcompany.radioeveryone.ui.customView.EksiTextViewLayout
+            android:id="@+id/eksiTextViewExample"
+            android:layout_width="409dp"
+            android:layout_height="534dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        </com.eiappcompany.radioeveryone.ui.customView.EksiTextViewLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
