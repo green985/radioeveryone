@@ -63,6 +63,13 @@ abstract class BaseRepository(
         return Observable.just<T>(genericResponse.body())
     }
 
+
+
+    /**
+    Server tarafından gelen verinin ayıklanarak error ve success statuslerinin kontrol edilmesi
+     Generic response için veya herhangi response çeşidine gore özelleştirilebilir.
+     ViewState durumlarını içinde barındırır.
+     */
     @Contract("null->fail")
     protected fun <T> interceptResponseExample2(@NonNull genericResponse: Response<GenericResponse<T>>): Observable<ViewState<T>> {
         val requestCode = genericResponse.code()

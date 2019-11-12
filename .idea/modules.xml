@@ -3,15 +3,20 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Projects-RadioEveryone.iml" filepath="$PROJECT_DIR$/Projects-RadioEveryone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Projects-radioeveryone-app.iml" filepath="$PROJECT_DIR$/app/Projects-radioeveryone-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/Projects-radioeveryone-base.iml" filepath="$PROJECT_DIR$/base/Projects-radioeveryone-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dataModule/Projects-radioeveryone-dataModule.iml" filepath="$PROJECT_DIR$/dataModule/Projects-radioeveryone-dataModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exoPlayerModule/Projects-radioeveryone-exoPlayerModule.iml" filepath="$PROJECT_DIR$/exoPlayerModule/Projects-radioeveryone-exoPlayerModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/RadioEveryone.iml" filepath="$PROJECT_DIR$/RadioEveryone.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/RadioEveryone-app.iml" filepath="$PROJECT_DIR$/app/RadioEveryone-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/base/RadioEveryone-base.iml" filepath="$PROJECT_DIR$/base/RadioEveryone-base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dataModule/RadioEveryone-dataModule.iml" filepath="$PROJECT_DIR$/dataModule/RadioEveryone-dataModule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/exoPlayerModule/RadioEveryone-exoPlayerModule.iml" filepath="$PROJECT_DIR$/exoPlayerModule/RadioEveryone-exoPlayerModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/dataModule/dataModule.iml" filepath="$PROJECT_DIR$/dataModule/dataModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/exoPlayerModule/exoPlayerModule.iml" filepath="$PROJECT_DIR$/exoPlayerModule/exoPlayerModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/radioeveryone-RadioEveryone.iml" filepath="$PROJECT_DIR$/radioeveryone-RadioEveryone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/radioeveryone-app.iml" filepath="$PROJECT_DIR$/app/radioeveryone-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/radioeveryone-base.iml" filepath="$PROJECT_DIR$/base/radioeveryone-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dataModule/radioeveryone-dataModule.iml" filepath="$PROJECT_DIR$/dataModule/radioeveryone-dataModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exoPlayerModule/radioeveryone-exoPlayerModule.iml" filepath="$PROJECT_DIR$/exoPlayerModule/radioeveryone-exoPlayerModule.iml" />
     </modules>
   </component>
 </project>

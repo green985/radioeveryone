@@ -19,6 +19,11 @@ constructor(
 ) : Interceptor {
 
     /**
+     * Requestler herhangi bir header parametresi veya güvenlikle alakalı değerler isterse
+     * bu kısımda eklenebilir veya cıkartılabilir.
+     * */
+
+    /**
      * Adds specific queries to requests
      *
      * @param chain represents [Chain]
